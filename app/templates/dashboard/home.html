@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+   {% if request.user.is_authenticated %}
+       <h1>Area restrita.</h1>
+       Bem Vindo(a) <br>
+       <a href="/logouts/">Sair!</a>
+       <hr>
+
+       {% if perms.admin.can_edit_users %}
+            <p>Seja-Bem-vindo(a), Owner!</p>
+       {% endif %}  
+       
+       {% if perms.admin.can_delete_posts %}
+            <a href="#">Deletar usuarios!</a>
+       {% endif %} 
+   {% else %}
+       Você não tem acesso a esta area!
+   {% endif %}
+{% endblock %}  
